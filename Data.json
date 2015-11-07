@@ -8,19 +8,19 @@
         "providers": [
             {
                 "beacon-major": 1,
-                "color": "ffffff",
+                "color": "9B59B6",
                 "id": 1,
                 "name": "Motocar"
             },
             {
                 "beacon-major": 2,
-                "color": "ffffff",
+                "color": "2ECC71",
                 "id": 2,
                 "name": "ParkIt"
             },
             {
                 "beacon-major": 10,
-                "color": "ffffff",
+                "color": "E67E22",
                 "id": 10,
                 "name": "Ühisteenused"
             },
@@ -38,7 +38,7 @@
             },
             {
                 "beacon-major": 6,
-                "color": "ffffff",
+                "color": "F1C40F",
                 "id": 6,
                 "name": "Citypark"
             },
@@ -50,19 +50,19 @@
             },
             {
                 "beacon-major": 9,
-                "color": "ffffff",
+                "color": "E74C3C",
                 "id": 9,
                 "name": "Jõhvi Vallavalistus"
             },
             {
                 "beacon-major": 8,
-                "color": "ffffff",
+                "color": "E74C3C",
                 "id": 8,
                 "name": "Pärnu Linnavalitsus"
             },
             {
                 "beacon-major": 11,
-                "color": "ffffff",
+                "color": "3498DB",
                 "id": 11,
                 "name": "EuroPark"
             },
