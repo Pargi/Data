@@ -1,7 +1,7 @@
 {
     "date": 1446922698,
-    "version": "1.0.1",
-    "hash": "af72db24c9a965193dafe8e911714ee468d21f39",
+    "version": "1.0.2",
+    "hash": "30e80c906eaf2a95bdb681573750a9f1346006d1",
 
     "data": {
         "groups": [],
@@ -26,13 +26,13 @@
             },
             {
                 "beacon-major": 3,
-                "color": "ffffff",
+                "color": "E74C3C",
                 "id": 3,
                 "name": "Tartu Linnavalistus"
             },
             {
                 "beacon-major": 5,
-                "color": "ffffff",
+                "color": "F1C40F",
                 "id": 5,
                 "name": "Alexela"
             },
