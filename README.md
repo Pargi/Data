@@ -8,7 +8,7 @@ Andmebaasi peamine struktuur on järgnev:
 
 Nimetus       | Tüüp (_type_) | Kohustuslik | Selgitus
 ------------- | ------------- | ----------- | --------
-`version`     | _32-bit uint_ | Jah | Andmebaasi versiooni number, kasutada tuleks [semantilist versiooni](http://semver.org)
+`version`     | _string_ | Jah | Andmebaasi versiooni number, kasutada tuleks [semantilist versiooni](http://semver.org)
 `date`        | _UNIX timestamp_ | Jah | Andmebaasi loomise kuupäev/kellaaeg
 `hash`        | _SHA1 hash_ | Jah | SHA1 `data` objektist
 `data`        | _dictionary_ | Jah | Andmed
