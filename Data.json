@@ -1,7 +1,7 @@
 {
-    "date": 1472127209,
-    "version": "1.0.3",
-    "hash": "4d9ed0758ad27bdf9216610a5edce4194f3b3924",
+    "date": 1493358026,
+    "version": "1.0.4",
+    "hash": "cff54c880efe95edbcc150b9d53d7c83a6c0f907",
 
     "data": {
         "groups": [],
@@ -44,7 +44,7 @@
             },
             {
                 "beacon-major": 4,
-                "color": "ffffff",
+                "color": "1D3243",
                 "id": 4,
                 "name": "Testkaupmees"
             },
