@@ -6,12 +6,6 @@
         "groups": [],
         "providers": [
             {
-                "beacon-major": 1,
-                "color": "9B59B6",
-                "id": 1,
-                "name": "Motocar"
-            },
-            {
                 "beacon-major": 2,
                 "color": "2ECC71",
                 "id": 2,
@@ -49,72 +43,6 @@
             }
         ],
         "zones": [
-            {
-                "beacon-minor": 1,
-                "code": "900",
-                "id": 1,
-                "provider": 1,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.43935,
-                                24.7648
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": [
-                    {
-                        "days": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7
-                        ],
-                        "periods": {
-                            "1800": 45,
-                            "86400": 290
-                        }
-                    }
-                ]
-            },
-            {
-                "beacon-minor": 2,
-                "code": "901",
-                "id": 2,
-                "provider": 1,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.43585,
-                                24.76075
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": [
-                    {
-                        "days": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7
-                        ],
-                        "periods": {
-                            "1800": 65,
-                            "86400": 480
-                        }
-                    }
-                ]
-            },
             {
                 "beacon-minor": 1,
                 "code": "PT2",
