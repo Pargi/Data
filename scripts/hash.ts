@@ -1,17 +1,15 @@
 #!/usr/bin/env node
-
 'use strict'
 
-const crypto = require('crypto');
-const fs = require('fs');
+import * as crypto from 'crypto';
+import * as fs from 'fs';
 
-const file = JSON.parse(fs.readFileSync('../Data.json'));
+const file = JSON.parse(fs.readFileSync('../Data.json', { encoding: 'utf-8' }));
 const data = file && file.data;
 
 if (!data) {
     console.log('Failed to get data from file');
     process.exit(1);
-    return;
 }
 
 const string = JSON.stringify(data);
@@ -20,5 +18,5 @@ const string = JSON.stringify(data);
 const sha = crypto.createHash('sha1');
 sha.update(string);
 
-console.log('Date', Math.floor(new Date() / 1000));
+console.log('Date', Math.floor(new Date().getTime() / 1000));
 console.log('SHA1', sha.digest('hex'));

@@ -1,0 +1,22 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "Utiliidid parklate andmetega töötamiseks",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "hash": "node build/hash.js",
+    "scrape-parkimine-ee": "node build/parkimine-ee-scraper.js",
+    "scrape-europark": "node build/europark-scraper.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "16",
+    "@types/node-fetch": "^2.6.2",
+    "node-fetch": "^3.2.10",
+    "node-html-parser": "^5.4.2-0",
+    "runtypes": "^6.6.0",
+    "typescript": "^4.7.4"
+  }
+}
