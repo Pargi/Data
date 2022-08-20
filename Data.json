@@ -24,12 +24,6 @@
                 "name": "Alexela"
             },
             {
-                "beacon-major": 4,
-                "color": "1D3243",
-                "id": 4,
-                "name": "Testkaupmees"
-            },
-            {
                 "beacon-major": 11,
                 "color": "3498DB",
                 "id": 11,
@@ -471,89 +465,6 @@
                         }
                     }
                 ]
-            },
-            {
-                "beacon-minor": 1,
-                "code": "ITKH",
-                "id": 16,
-                "provider": 4,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.42759,
-                                24.75525
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": []
-            },
-            {
-                "beacon-minor": 2,
-                "code": "Stockmann",
-                "id": 17,
-                "provider": 4,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.43157,
-                                24.76057
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": [
-                    {
-                        "days": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7
-                        ],
-                        "periods": {
-                            "900": 80
-                        }
-                    }
-                ]
-            },
-            {
-                "beacon-minor": 3,
-                "code": "VIRU",
-                "id": 18,
-                "provider": 4,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.43605,
-                                24.75501
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": []
-            },
-            {
-                "beacon-minor": 4,
-                "code": "VABADUSE",
-                "id": 19,
-                "provider": 4,
-                "regions": [
-                    {
-                        "points": [
-                            [
-                                59.43294,
-                                24.74375
-                            ]
-                        ]
-                    }
-                ],
-                "tariffs": []
             },
             {
                 "beacon-minor": 1,
@@ -11685,7 +11596,16 @@
                 "beacon-minor": 2108,
                 "provider": 10,
                 "code": "VIRU",
-                "regions": [],
+                "regions": [
+                    {
+                        "points": [
+                            [
+                                59.43605,
+                                24.75501
+                            ]
+                        ]
+                    }
+                ],
                 "tariffs": [
                     {
                         "days": [
