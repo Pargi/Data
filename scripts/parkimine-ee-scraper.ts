@@ -420,7 +420,7 @@ async function main() {
         provider: PROVIDER_ID,
         code,
         regions: [
-          { points: [item.lat, item.lng] },
+          { points: [[item.lat, item.lng]] },
           ...item.areas.map((area) => ({
             points: area.points.map(({ lat, lng }) => [lat, lng]),
           })),
