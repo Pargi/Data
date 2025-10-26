@@ -9,7 +9,8 @@
     "hash": "node build/hash.js",
     "scrape-parkimine-ee": "node build/parkimine-ee-scraper.js",
     "scrape-europark": "node build/europark-scraper.js",
-    "scrape-snabb": "node build/snabb-scraper.js"
+    "scrape-snabb": "node build/snabb-scraper.js",
+    "fix-ids": "node build/fix-ids.js"
   },
   "type": "module",
   "devDependencies": {
