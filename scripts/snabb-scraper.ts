@@ -107,27 +107,31 @@ async function main() {
   for (const item of list) {
     const details = await fetchDetails(item.ID);
 
-    let regions: unknown;
+    let regions = [
+      {
+        points: [[item.Latitude, item.Longitude]],
+      },
+    ];
+
     if (details?.areas && details.areas.length > 0) {
-      regions = details.areas.map((area) => ({
-        points: area.points.map(({ lat, lng }) => [lat, lng]),
-      }));
+      regions.push(
+        ...details.areas.map((area) => ({
+          points: area.points.map(({ lat, lng }) => [lat, lng]),
+        }))
+      );
     } else if (details?.Polygons && details.Polygons.length > 0) {
-      regions = details.Polygons.map((poly) => ({
-        points: poly.path.map(({ latitude, longitude }) => [
-          latitude,
-          longitude,
-        ]),
-      }));
+      regions.push(
+        ...details.Polygons.map((poly) => ({
+          points: poly.path.map(({ latitude, longitude }) => [
+            latitude,
+            longitude,
+          ]),
+        }))
+      );
     } else if ((details as any)?.geojson?.geometry) {
-      regions = convertGeometryToRegions((details as any).geojson.geometry);
-    } else {
-      // Fallback to a single point from the list
-      regions = [
-        {
-          points: [[item.Latitude, item.Longitude]],
-        },
-      ];
+      regions.push(
+        ...convertGeometryToRegions((details as any).geojson.geometry)
+      );
     }
 
     // Determine code, fallback to first token of Name or ID
