@@ -25,6 +25,8 @@ const ZoneListRuntype = Record({
       id: Number,
       title: String,
       opened: String,
+      lat: Number,
+      lng: Number,
       areas: Array(
         Record({ points: Array(Record({ lat: Number, lng: Number })) })
       ),
@@ -417,9 +419,12 @@ async function main() {
         "beacon-minor": item.id,
         provider: PROVIDER_ID,
         code,
-        regions: item.areas.map((area) => ({
-          points: area.points.map(({ lat, lng }) => [lat, lng]),
-        })),
+        regions: [
+          { points: [item.lat, item.lng] },
+          ...item.areas.map((area) => ({
+            points: area.points.map(({ lat, lng }) => [lat, lng]),
+          })),
+        ],
         tariffs,
       });
     } catch (err) {
