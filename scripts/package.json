@@ -11,7 +11,8 @@
     "scrape-europark": "node build/europark-scraper.js",
     "scrape-snabb": "node build/snabb-scraper.js",
     "scrape-tallinn": "node build/tallinn-scraper.js",
-    "fix-ids": "node build/fix-ids.js"
+    "fix-ids": "node build/fix-ids.js",
+    "serve": "tsc && node build/server.js"
   },
   "type": "module",
   "devDependencies": {
