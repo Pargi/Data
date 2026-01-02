@@ -1,7 +1,7 @@
 {
-    "date": 1767355694,
-    "version": "1.8.6",
-    "hash": "d7e8331cc796793eb5e1c6cd4ba8cdeecbe04866",
+    "date": 1767355987,
+    "version": "1.8.7",
+    "hash": "798b56506306f1d07fda99ddebc96a659c022b1e",
     "data": {
         "groups": [],
         "providers": [
@@ -67727,7 +67727,7 @@
                                 24.773244319231328
                             ]
                         ],
-                        "interior-regions": [
+                        "interiorRegions": [
                             {
                                 "points": [
                                     [
