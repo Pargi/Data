@@ -44,16 +44,31 @@ type Feature = Static<typeof FeatureRuntype>;
 
 function getRegions(geometry: Feature["geometry"]) {
   if (geometry.type === "Polygon") {
-    const coords = (geometry as any).coordinates[0] as number[][] | undefined;
-    if (!coords) return [];
-    return [{ points: coords.map((c) => [c[1], c[0]] as [number, number]) }];
+    const coords = (geometry as any).coordinates as number[][][] | undefined;
+    if (!coords || coords.length === 0) return [];
+    const region: any = {
+      points: coords[0]!.map((c) => [c[1], c[0]] as [number, number]),
+    };
+    if (coords.length > 1) {
+      region.interiorRegions = coords.slice(1).map((ring) => ({
+        points: ring.map((c) => [c[1], c[0]] as [number, number]),
+      }));
+    }
+    return [region];
   } else if (geometry.type === "MultiPolygon") {
     const polys = (geometry as any).coordinates as number[][][][] | undefined;
     if (!polys) return [];
     return polys.flatMap((poly) => {
-      const ring = poly[0];
-      if (!ring) return [];
-      return [{ points: ring.map((c) => [c[1], c[0]] as [number, number]) }];
+      if (!poly || poly.length === 0) return [];
+      const region: any = {
+        points: poly[0]!.map((c) => [c[1], c[0]] as [number, number]),
+      };
+      if (poly.length > 1) {
+        region.interiorRegions = poly.slice(1).map((ring) => ({
+          points: ring.map((c) => [c[1], c[0]] as [number, number]),
+        }));
+      }
+      return [region];
     });
   }
   return [];
@@ -281,19 +296,6 @@ async function main() {
       tariffs: tariffs,
     });
   }
-
-  const holeCodes = ["VANALINN15", "SÜDALINN15"];
-  const holeRegions = results
-    .filter((r) => holeCodes.includes(r.code))
-    .flatMap((r) => r.regions);
-
-  results
-    .filter((r) => r.code === "KESKLINN15")
-    .forEach((r) => {
-      r.regions.forEach((region: any) => {
-        region["interior-regions"] = holeRegions;
-      });
-    });
 
   return results;
 }
