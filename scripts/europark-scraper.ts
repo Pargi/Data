@@ -204,7 +204,7 @@ async function main() {
           ? zone.geojson.features.map((feature) => ({
               points: convertGeometryToPoints(feature.geometry),
             }))
-          : { points: convertGeometryToPoints(outlineFeature.geometry) },
+          : [{ points: convertGeometryToPoints(outlineFeature.geometry) }],
       tariffs: [fallbackTariff].concat(specialTariffs),
     });
   }
