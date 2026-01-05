@@ -12,6 +12,7 @@
     "scrape-snabb": "node build/snabb-scraper.js",
     "scrape-tallinn": "node build/tallinn-scraper.js",
     "fix-ids": "node build/fix-ids.js",
+    "update-data-json": "tsc && node build/merge-data.js && node build/fix-ids.js && node build/hash.js",
     "serve": "tsc && node build/server.js"
   },
   "type": "module",

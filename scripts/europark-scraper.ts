@@ -142,13 +142,24 @@ async function main() {
   const zones = ZoneListRuntype.check(await response.json()).paringzones;
   const results: unknown[] = [];
 
-  for (const zone of zones) {
-    const outlineFeature = zone.geojson.features.find(
-      (feature) => feature.properties.type === "outline"
-    );
+  const zonesByCode = zones.reduce((memo, zone) => {
+    if (memo.has(zone.parking_code)) {
+      memo.get(zone.parking_code)!.push(zone);
+    } else {
+      memo.set(zone.parking_code, [zone]);
+    }
 
-    if (zone.parking_code.length === 0) {
+    return memo;
+  }, new Map<string, (typeof zones)[number][]>());
+
+  for (const [code, zones] of zonesByCode.entries()) {
+    if (code.length === 0) {
       // Not valid for mobile parking
+      continue;
+    }
+
+    const first = zones[0];
+    if (first === undefined) {
       continue;
     }
 
@@ -160,7 +171,7 @@ async function main() {
       periods: {},
     };
 
-    const specialTariffs = zone.price_list
+    const specialTariffs = first.price_list
       .flatMap((tariff) => {
         const period = convertPeriodToSeconds(tariff.period);
 
@@ -196,15 +207,14 @@ async function main() {
       );
 
     results.push({
-      "beacon-minor": zone.id,
+      "beacon-minor": first.id,
       provider: PROVIDER_ID,
-      code: zone.parking_code,
-      regions:
-        outlineFeature === undefined
-          ? zone.geojson.features.map((feature) => ({
-              points: convertGeometryToPoints(feature.geometry),
-            }))
-          : [{ points: convertGeometryToPoints(outlineFeature.geometry) }],
+      code,
+      regions: zones.flatMap((zone) =>
+        zone.geojson.features.map((feature) => ({
+          points: convertGeometryToPoints(feature.geometry),
+        }))
+      ),
       tariffs: [fallbackTariff].concat(specialTariffs),
     });
   }
