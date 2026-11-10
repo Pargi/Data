@@ -6,6 +6,7 @@ import {
   Array,
   Number,
   Literal,
+  Null,
   Static,
 } from "runtypes";
 import fs from "fs";
@@ -29,9 +30,9 @@ const FeatureRuntype = RuntypesRecord({
   ),
   properties: RuntypesRecord({
     nimetus: String,
-    tasu: String.Or(Number),
-    markused: String,
-    uhik: Number.Or(String).optional(),
+    tasu: String.Or(Number).Or(Null),
+    markused: String.Or(Null),
+    uhik: Number.Or(String).Or(Null).optional(),
   }),
 });
 
@@ -74,22 +75,33 @@ function getRegions(geometry: Feature["geometry"]) {
   return [];
 }
 
-function deriveCode(nimetus: string): string {
+function deriveCode(nimetus: string): string | null {
   switch (nimetus.trim()) {
     case "Vanalinna parkimisala":
+    case "Vanalinna parkimistsoon":
       return "VANALINN15";
     case "Südalinna parkimisala":
+    case "Südalinna parkimistsoon":
       return "SÜDALINN15";
     case "Kesklinna parkimisala":
+    case "Kesklinna parkimistsoon":
       return "KESKLINN15";
     case "Pirita parkimisala":
+    case "Pirita parkimistsoon":
       return "PIRITA15";
+    // Free / unpaid suburban area — not an SMS-payable zone
+    case "Äärelinna parkimistsoon":
+      return null;
     default:
       return nimetus;
   }
 }
 
-function parseMarkused(markused: string): any[] {
+function parseMarkused(markused: string | null): any[] {
+  if (!markused) {
+    return [];
+  }
+
   const parts = markused.split("//").map((s) => s.trim());
   let targetText = parts[0] || "";
 
@@ -250,10 +262,10 @@ async function main() {
   const json = await response.json();
   const geojson = GeoJSONRuntype.check(json);
 
-  const featuresWithCode = geojson.features.map((f) => ({
-    feature: f,
-    code: deriveCode(f.properties.nimetus),
-  }));
+  const featuresWithCode = geojson.features.flatMap((f) => {
+    const code = deriveCode(f.properties.nimetus);
+    return code === null ? [] : [{ feature: f, code }];
+  });
 
   const results: any[] = [];
 

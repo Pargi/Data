@@ -226,6 +226,24 @@ function convertOpeningTimes(
     ];
   }
 
+  const bareTimeRange =
+    /^(?<startHour>\d{1,2})[.:](?<startMinute>\d{2})-(?<endHour>\d{1,2})[.:](?<endMinute>\d{2})$/.exec(
+      times.trim()
+    );
+  if (bareTimeRange) {
+    return [
+      {
+        days: [1, 2, 3, 4, 5, 6, 7],
+        start:
+          parseInt(bareTimeRange.groups!.startHour!, 10) * SECONDS_IN_HOURS +
+          parseInt(bareTimeRange.groups!.startMinute!, 10) * SECONDS_IN_MINUTES,
+        end:
+          parseInt(bareTimeRange.groups!.endHour!, 10) * SECONDS_IN_HOURS +
+          parseInt(bareTimeRange.groups!.endMinute!, 10) * SECONDS_IN_MINUTES,
+      },
+    ];
+  }
+
   const parts = times.split(",").map((part) => part.trim());
   return parts.flatMap((part) => {
     if (part === "Mon-Fri 08:00-19:00 Sat 11:00-17:00") {
